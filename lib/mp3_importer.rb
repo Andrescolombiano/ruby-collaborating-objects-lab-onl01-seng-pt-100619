@@ -1,28 +1,15 @@
-require 'pry'
 class MP3Importer
+  attr_accessor :path
 
-attr_accessor :path
-
-list_of_filenames = []
-
-  def initialize(path)
+   def initialize(path)
     @path = path
-
-    #binding.pry
   end
 
-
-    def files
-      Dir.entries(path).select do | file | !File.directory? file
-
-      #  binding.pry
-    end
-
+   def files
+    Dir[@path+"/*.mp3"].map { |file| file.split("/").last }
   end
 
-  def import
-    files.each{ |filename| Song.new_by_filename(filename) }
+   def import
+    files.each { |file| Song.new_by_filename(file) }
   end
-
-
-end
+end 
