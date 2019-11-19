@@ -59,6 +59,7 @@ describe 'Artist' do
     it 'always returns an Artist instance' do
       artist_1 = Artist.find_or_create_by_name("Michael Jackson")
       artist_2 = Artist.find_or_create_by_name("Michael Jackson")
+      expect(artist_1).to eq(artist_2)
       expect(artist_1).to be_an(Artist)
       expect(artist_2).to be_an(Artist)
     end
